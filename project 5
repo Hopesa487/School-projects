@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main(void) {
+    double a, b, result;
+    char op;
+
+    printf("Enter first number: ");
+    if (scanf("%lf", &a) != 1) { printf("Invalid input.\n"); return 1; }
+
+    printf("Enter second number: ");
+    if (scanf("%lf", &b) != 1) { printf("Invalid input.\n"); return 1; }
+
+    printf("Choose operation (+, -, *, /): ");
+    scanf(" %c", &op);  // space before %c skips leftover newline
+
+    switch (op) {
+        case '+': result = a + b; break;
+        case '-': result = a - b; break;
+        case '*': result = a * b; break;
+        case '/':
+            if (b == 0) { printf("Error: division by zero.\n"); return 1; }
+            result = a / b; break;
+        default:  printf("Invalid operation.\n"); return 1;
+    }
+
+    // Print as integer if result is whole, else as double
+    if (result == (long long)result)
+        printf("\nResult = %.0f\n", result);
+    else
+        printf("\nResult = %g\n", result);
+
+    return 0;
+}
